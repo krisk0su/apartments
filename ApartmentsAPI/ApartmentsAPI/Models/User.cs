@@ -1,4 +1,4 @@
-﻿namespace Apartments_Models
+﻿namespace ApartmentsAPI.Models
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;

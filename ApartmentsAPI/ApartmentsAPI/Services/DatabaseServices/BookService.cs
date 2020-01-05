@@ -1,6 +1,7 @@
-﻿namespace Apartments_API.Services
+﻿namespace ApartmentsAPI.Services.DatabaseServices
 {
-    using Apartments_Models;
+    using ApartmentsAPI.Models;
+    using ApartmentsAPI.Settings.Interfaces;
     using MongoDB.Driver;
     using System.Collections.Generic;
     using System.Linq;
@@ -21,7 +22,7 @@
             _books.Find(book => true).ToList();
 
         public Book Get(string id) =>
-            _books.Find<Book>(book => book.Id == id).FirstOrDefault();
+            _books.Find(book => book.Id == id).FirstOrDefault();
 
         public Book Create(Book book)
         {

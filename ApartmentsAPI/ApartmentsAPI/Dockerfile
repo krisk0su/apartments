@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Apartments/Apartments.csproj", "Apartments/"]
-RUN dotnet restore "Apartments/Apartments.csproj"
+COPY ["ApartmentsAPI/ApartmentsAPI.csproj", "ApartmentsAPI/"]
+RUN dotnet restore "ApartmentsAPI/ApartmentsAPI.csproj"
 COPY . .
-WORKDIR "/src/Apartments"
-RUN dotnet build "Apartments.csproj" -c Release -o /app/build
+WORKDIR "/src/ApartmentsAPI"
+RUN dotnet build "ApartmentsAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Apartments.csproj" -c Release -o /app/publish
+RUN dotnet publish "ApartmentsAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Apartments.dll"]
+ENTRYPOINT ["dotnet", "ApartmentsAPI.dll"]
